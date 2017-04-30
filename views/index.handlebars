@@ -1,0 +1,44 @@
+<h2>Add Burger</h2>
+<img src="https://previews.123rf.com/images/hatza/hatza1305/hatza130500017/19970254-cartoon-burger-Stock-Vector-food.jpg" height="100" width="100">
+<form class="create-update-form" action="/" method="POST">
+
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+  <button type="submit">Add burger</button>
+</form>
+
+
+<h2> Burger Devoured</h2>
+
+  {{#each burger}}
+    {{#unless this.devoured}}
+  
+        {{this.id}}.{{this.burger_name}}
+       <form action="/{{this.id}}?_method=delete" method="POST">
+          <input type="hidden" name="delete" value="true">
+          <button type="submit">Delete IT !</button>
+        </form>
+
+    
+    {{/unless}}
+  {{/each}}
+
+
+<h2>burger Added</h2>
+
+
+  {{#each burger}}
+    {{#if this.devoured}}
+      
+        {{this.id}}.{{this.burger_name}}
+     
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="false">
+          <button type="submit">Devoured IT !</button>
+        </form>
+
+    {{/if}}
+  {{/each}}
